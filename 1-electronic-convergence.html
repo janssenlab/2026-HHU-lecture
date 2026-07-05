@@ -344,7 +344,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-self-consistent-field-scf-cycle">The self-consistent field (SCF) cycle</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-management">Job Management</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
@@ -363,6 +366,11 @@
   <section class="tex2jax_ignore mathjax_ignore" id="electronic-convergence">
 <h1>Electronic Convergence<a class="headerlink" href="#electronic-convergence" title="Link to this heading">#</a></h1>
 <p>In contrast to simulation with interatomic potentials which only consider the interaction of atoms, density functional theory (DFT) leverages the density of electrons to determine the forces between atoms and the energy of a simulation cell. Consequently, the careful threatment of the electronic convergence is essential for high precision DFT calculation. In the following the <a class="reference external" href="https://sxrepo.mpie.de">SPHInX</a> DFT simulation code is used in combination with the <a class="reference external" href="https://pyiron.org">pyiron.org</a> workflow framework to develop a practical understanding of DFT simulation.</p>
+<p>Most chemistry students first meet DFT for molecules, where the Kohn-Sham equations
+$<span class="math notranslate nohighlight">\(\left[-\frac{\hbar^2}{2m_e}\nabla^2 + v_\text{eff}[n](\mathbf{r})\right]\psi_i(\mathbf{r}) = \varepsilon_i \psi_i(\mathbf{r})\)</span><span class="math notranslate nohighlight">\(
+are solved for a finite molecule, expanding the orbitals \)</span>\psi_i<span class="math notranslate nohighlight">\( in a set of atom-centred Gaussian- or Slater-type basis functions. The effective potential
+\)</span><span class="math notranslate nohighlight">\(v_\text{eff}[n](\mathbf{r}) = v_\text{ext}(\mathbf{r}) + v_\text{H}[n](\mathbf{r}) + v_\text{xc}[n](\mathbf{r})\)</span><span class="math notranslate nohighlight">\(
+depends on the electron density \)</span>n(\mathbf{r}) = \sum_i f_i |\psi_i(\mathbf{r})|^2<span class="math notranslate nohighlight">\(, which in turn is built from the orbitals that are solutions of the very equation that contains \)</span>v_\text{eff}$. Because of this circularity the equations cannot be solved directly and instead have to be solved iteratively, the so called self-consistent field (SCF) cycle. This part of the problem is identical in molecular and solid-state DFT and is the topic of this first tutorial. What changes for a crystalline solid like Aluminium is that the system is periodic and, in principle, infinitely extended, so instead of a handful of atom-centred basis functions, plane-wave DFT codes such as SPHInX expand the same Kohn-Sham orbitals in a basis of plane waves. This is explained in detail in the second tutorial.</p>
 <p>Both codes are available as open-source software for the Linux operation system and can be installed from the <code class="docutils literal notranslate"><span class="pre">conda</span></code> package manager using:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">pyiron_atomistics</span> <span class="n">sphinxdft</span> <span class="n">sphinxdft</span><span class="o">-</span><span class="n">data</span> <span class="n">pyiron</span><span class="o">-</span><span class="n">data</span> <span class="n">nglview</span>
 </pre></div>
@@ -386,6 +394,17 @@
 </div>
 <section id="calculation">
 <h2>Calculation<a class="headerlink" href="#calculation" title="Link to this heading">#</a></h2>
+<section id="the-self-consistent-field-scf-cycle">
+<h3>The self-consistent field (SCF) cycle<a class="headerlink" href="#the-self-consistent-field-scf-cycle" title="Link to this heading">#</a></h3>
+<p>Solving the Kohn-Sham equations self-consistently means iterating the following loop:</p>
+<ol class="arabic simple">
+<li><p>Start from a trial electron density <span class="math notranslate nohighlight">\(n^{(0)}(\mathbf{r})\)</span>, for example a superposition of atomic densities.</p></li>
+<li><p>Build the effective potential <span class="math notranslate nohighlight">\(v_\text{eff}[n^{(m)}](\mathbf{r})\)</span> from the current density.</p></li>
+<li><p>Solve the Kohn-Sham equations for this fixed potential to obtain new orbitals <span class="math notranslate nohighlight">\(\psi_i^{(m+1)}\)</span> and energies <span class="math notranslate nohighlight">\(\varepsilon_i^{(m+1)}\)</span>.</p></li>
+<li><p>Build a new density <span class="math notranslate nohighlight">\(n^{(m+1)}(\mathbf{r}) = \sum_i f_i |\psi_i^{(m+1)}(\mathbf{r})|^2\)</span> and mix it with the density of previous iterations to improve numerical stability.</p></li>
+<li><p>Compute the total energy <span class="math notranslate nohighlight">\(E^{(m+1)}\)</span> and compare it to <span class="math notranslate nohighlight">\(E^{(m)}\)</span> from the previous iteration. If <span class="math notranslate nohighlight">\(|E^{(m+1)} - E^{(m)}|\)</span> is below a chosen threshold, the calculation is considered <em>electronically converged</em>; otherwise return to step 2.</p></li>
+</ol>
+<p>This is exactly the loop the <code class="docutils literal notranslate"><span class="pre">set_convergence_precision(electronic_energy=...)</span></code> parameter below controls: it sets the energy threshold at which step 5 stops the SCF cycle. Electronic convergence therefore refers exclusively to this inner SCF loop, for a <em>fixed</em> plane-wave basis (energy cut-off) and a <em>fixed</em> k-point mesh - the basis-set convergence with respect to those two parameters is the topic of the next tutorial.</p>
 <p>As a first step the <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> folder is created using the <code class="docutils literal notranslate"><span class="pre">Project</span></code> object. To have a clean start all calculations in this folder are removed using the <code class="docutils literal notranslate"><span class="pre">remove_jobs()</span></code> function. This is typically not necessary, but it is a helpful command to restart fresh.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -448,6 +467,7 @@
 </div>
 </div>
 </section>
+</section>
 <section id="analysis">
 <h2>Analysis<a class="headerlink" href="#analysis" title="Link to this heading">#</a></h2>
 <p>When the calculation is successfully completed, the next step is to analyse the calculation results. Just like the setup of the calculation, in <code class="docutils literal notranslate"><span class="pre">pyiron</span></code> all these steps can be executed directly from the Jupyter notebook. In this way the Jupyter notebook behaves like a lab book in an experimental lab combining both, the input of the calculation and the output of the calculation in one document. To achieve reproducibility of these simulation protocols, the scientific input and the technical inputs are separated. For this demonstration the technical configuration, was installed in the beginning with the <code class="docutils literal notranslate"><span class="pre">pyiron-data</span></code> package, it contains the link to the SPHInX simulation code installed via conda, to allow new users to start right away. The scientific input is written in this notebook. In this way the notebook can be copied from one <code class="docutils literal notranslate"><span class="pre">pyiron</span></code> installation to another and still works as expected.</p>
@@ -504,6 +524,9 @@
 </div>
 </div>
 <p>This example demonstrates that determening if a calculation is converged or not always depends on the convergence goal. A convergence of <span class="math notranslate nohighlight">\(10^{-3}\)</span> is already achived at the second electronic step while a convergence of <span class="math notranslate nohighlight">\(10^{-7}\)</span> in this case requires three electronic steps and so on.</p>
+<p>In formal terms, the quantity plotted on the y-axis of the previous figure is
+$<span class="math notranslate nohighlight">\(\Delta E_m = \left| E^{(m)} - E^{(m_\text{final})} \right|\)</span><span class="math notranslate nohighlight">\(
+the absolute difference between the total energy at SCF step \)</span>m<span class="math notranslate nohighlight">\( and the total energy of the last, best converged SCF step \)</span>m_\text{final}<span class="math notranslate nohighlight">\(. Because the SCF cycle converges roughly exponentially once it is close to the solution, \)</span>\Delta E_m<span class="math notranslate nohighlight">\( decays linearly on the semi-logarithmic scale, and the number of additional SCF steps needed to gain one more order of magnitude in precision stays roughly constant. Electronic convergence is computationally cheap compared to the basis-set convergence discussed in the next tutorial, so it is common practice to converge the SCF loop tightly, typically to \)</span>10^{-6}<span class="math notranslate nohighlight">\(-\)</span>10^{-8},\mathrm{eV}$, so that it never limits the overall accuracy of a calculation.</p>
 </section>
 <section id="job-management">
 <h2>Job Management<a class="headerlink" href="#job-management" title="Link to this heading">#</a></h2>
@@ -577,6 +600,7 @@
 <section id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>While for bulk structures electronic convergence is quickly achieved, for more complex chemical structures, surfaces or defects electronic convergence can be much more challenging. So it is important to carefully check the electronic convergence for every calculation.</p>
+<p>It is worth stressing again that electronic (SCF) convergence, basis-set convergence (plane-wave energy cut-off and k-point mesh, tutorial 2) and structural convergence (e.g. of a volume or geometry, tutorial 3) are three independent and conceptually different types of convergence that all have to be checked for a trustworthy DFT calculation.</p>
 </section>
 <section id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Link to this heading">#</a></h2>
@@ -653,7 +677,10 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calculation">Calculation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-self-consistent-field-scf-cycle">The self-consistent field (SCF) cycle</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-management">Job Management</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
