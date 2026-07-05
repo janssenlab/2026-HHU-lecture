@@ -382,11 +382,7 @@ This plane-wave expansion is exact only in the limit of infinitely many \)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "3ebc8254fca04408adf50da914385b1a"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.12/site-packages/nglview/__init__.py:12: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
-  import pkg_resources
-</pre></div>
-</div>
-</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ef5ada6f2a3e4f69a30864ae50c9036e"}</script></div>
 </div>
 <p>A new <code class="docutils literal notranslate"><span class="pre">Project</span></code> object is created named <code class="docutils literal notranslate"><span class="pre">convergence</span></code> to separate the calculation from the first and the second tutorial. Any remaining calculation in the <code class="docutils literal notranslate"><span class="pre">convergence</span></code> folder are removed using the <code class="docutils literal notranslate"><span class="pre">remove_jobs()</span></code> function, to provide a fresh start for every execution of the notebook.</p>
 <div class="cell docutils container">
@@ -397,7 +393,7 @@ This plane-wave expansion is exact only in the limit of infinitely many \)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e36d2c01923049d9be23308170cc3e98"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1d19cec6df7f45fd98f0e5cf3056a703"}</script></div>
 </div>
 <p>From the <code class="docutils literal notranslate"><span class="pre">Project</span></code> object an Aluminium bulk structure is again created using the <code class="docutils literal notranslate"><span class="pre">create.structure.ase.bulk()</span></code> function. In contrast to the previous example which used a primitive cell, a cubic cell is created using the <code class="docutils literal notranslate"><span class="pre">cubic=True</span></code> parameter. Afterwards the structure is again visualized using the <code class="docutils literal notranslate"><span class="pre">plot3d()</span></code> function.</p>
 <div class="cell docutils container">
@@ -408,7 +404,7 @@ This plane-wave expansion is exact only in the limit of infinitely many \)</span
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "c46c7e9c8d444780b2889fdb0bc50b83"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "5192d98248684e588f5feb552c1e652c"}</script></div>
 </div>
 <p>While the primitive cell of Aluminium by definition only includes a single Aluminium atom, the cubic cell contains four Aluminium atoms.</p>
 </section>
@@ -490,7 +486,7 @@ The job spx_Al_encut_600 was saved and received the ID: 22
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Energy (eV)&#39;)
 </pre></div>
 </div>
-<img alt="_images/c1bc6dae3edfd9f887c6dda183956af2ff14dbd6733d4583546764c2814d94ad.png" src="_images/c1bc6dae3edfd9f887c6dda183956af2ff14dbd6733d4583546764c2814d94ad.png" />
+<img alt="_images/9f350f8eb2ed94f89f7b385898d6ff12f47be31004c4f62f9c54f1fa4ddbed4e.png" src="_images/9f350f8eb2ed94f89f7b385898d6ff12f47be31004c4f62f9c54f1fa4ddbed4e.png" />
 </div>
 </div>
 <p>By plotting the convergence of the absolute difference to energy at maximum planewave energy cutoff on a semi-logarthimic plot, it becomes clear that convergence can only be defined relative to a specific planewave energy cutoff, not in an absolute way.</p>
@@ -506,11 +502,11 @@ The job spx_Al_encut_600 was saved and received the ID: 22
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
 &lt;&gt;:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-/tmp/ipykernel_808/1937516810.py:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/tmp/ipykernel_244/1937516810.py:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   plt.ylabel(&quot;$\Delta$ Energy (eV)&quot;)
 </pre></div>
 </div>
-<img alt="_images/15d8ecf9ba73675be2bc8b6e7aa76cb4ae1de18f0991c21dc787556192b0c70a.png" src="_images/15d8ecf9ba73675be2bc8b6e7aa76cb4ae1de18f0991c21dc787556192b0c70a.png" />
+<img alt="_images/8692b8970726f59a6ad57044bf5be1ec8081f0d2fe2e984ce91087fb84a5b77a.png" src="_images/8692b8970726f59a6ad57044bf5be1ec8081f0d2fe2e984ce91087fb84a5b77a.png" />
 </div>
 </div>
 <p>For the following calculations a planewave energy cut-off of 300eV is chosen, primarily for computational efficiency. In addition, it is important to mention that the planewave energy cut-off is not universal, it has to be tested for any element and even alloys can have different convergence behaviour depending on their electronic structure. So careful convergence tests should be the start of every DFT calculation.</p>
@@ -580,7 +576,7 @@ The job spx_Al_kpoint_10_10_10 was saved and received the ID: 32
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Energy (eV)&#39;)
 </pre></div>
 </div>
-<img alt="_images/3eec1d3dfa9e426816f0d190037fba606c36a357d57d5aa520d373622bf8c9d5.png" src="_images/3eec1d3dfa9e426816f0d190037fba606c36a357d57d5aa520d373622bf8c9d5.png" />
+<img alt="_images/ca277e49f9377f1b089a1273245d86387762c967437398e6e9f89bc41038fc9c.png" src="_images/ca277e49f9377f1b089a1273245d86387762c967437398e6e9f89bc41038fc9c.png" />
 </div>
 </div>
 <p>Once more following the same trick, the convergence can be analysed more efficiently by comparing to the energy at maximum k-point mesh and subtract it from the previous energies and compute the absolute difference. The relative convergence is plotted on a semi-logarithmic scale.</p>
@@ -596,11 +592,11 @@ The job spx_Al_kpoint_10_10_10 was saved and received the ID: 32
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
 &lt;&gt;:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-/tmp/ipykernel_808/2491894759.py:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/tmp/ipykernel_244/2491894759.py:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   plt.ylabel(&quot;$\Delta$ Energy (eV)&quot;)
 </pre></div>
 </div>
-<img alt="_images/32f9c9dc7136d35be0f8e3479c2ddfdbbf052b1cc5429ab2dc8f9ef3bd990e82.png" src="_images/32f9c9dc7136d35be0f8e3479c2ddfdbbf052b1cc5429ab2dc8f9ef3bd990e82.png" />
+<img alt="_images/bd4ab6cdfa49a2faa42de39c9e85bc314673f2b9338ac54e19777419991a78a9.png" src="_images/bd4ab6cdfa49a2faa42de39c9e85bc314673f2b9338ac54e19777419991a78a9.png" />
 </div>
 </div>
 <p>As the inclusion of the Gamma point drastically impacts the convergence behaviour, the convergence is typically analysed by either considering only the odd or only the even numbers of k-points, e.g. those who include the Gamma point or not. By coloring the odd and even k-points separately this can be demonstrated for the current example:</p>
@@ -619,14 +615,14 @@ The job spx_Al_kpoint_10_10_10 was saved and received the ID: 32
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\D&#39;
 &lt;&gt;:5: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-/tmp/ipykernel_808/2888601850.py:5: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/tmp/ipykernel_244/2888601850.py:5: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   plt.ylabel(&quot;$\Delta$ Energy (eV)&quot;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ef2e47f0f20&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x72489b764c20&gt;
 </pre></div>
 </div>
-<img alt="_images/c13344a06d8fdb368a97b22da20ba2fe76df18e0455b5bb0731afad9a3dd0c58.png" src="_images/c13344a06d8fdb368a97b22da20ba2fe76df18e0455b5bb0731afad9a3dd0c58.png" />
+<img alt="_images/9fccc0411fc142f42721d0a8e50f70a7ac1c0a4a14f1c7e6aa5f3fa7f09cf172.png" src="_images/9fccc0411fc142f42721d0a8e50f70a7ac1c0a4a14f1c7e6aa5f3fa7f09cf172.png" />
 </div>
 </div>
 </section>
@@ -641,7 +637,7 @@ The job spx_Al_kpoint_10_10_10 was saved and received the ID: 32
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "e3a3b41082344ca7a57a984baf32ce19"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "486d041e6c7443b391b376402492ab98"}</script></div>
 </div>
 <p>In analogy to the previous k-point mesh convergence test above the loop iterates over the number of kpoints in one dimension. For this test only the even number of kpoints are considered, so the number of k-points for the z-dimension can be set to be half the number of kpoints in the other dimensions.</p>
 <div class="cell docutils container">
@@ -683,14 +679,14 @@ The job spx_Al_kpoint_big_10_10_5 was saved and received the ID: 37
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:4: SyntaxWarning: invalid escape sequence &#39;\D&#39;
 &lt;&gt;:4: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-/tmp/ipykernel_808/2931551902.py:4: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/tmp/ipykernel_244/2931551902.py:4: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   plt.ylabel(&quot;$\Delta$ Energy (eV)&quot;)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ef2e45b8b60&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x72489b4ced50&gt;
 </pre></div>
 </div>
-<img alt="_images/e7e3aa29a7a0968dbd3f44be79229a721f94f95bbf30ab37d19ea454ae0906c3.png" src="_images/e7e3aa29a7a0968dbd3f44be79229a721f94f95bbf30ab37d19ea454ae0906c3.png" />
+<img alt="_images/0e0d9225ec14ceddf13d2e3673293dae354d9f5349ce83000fcf2b55d218ad99.png" src="_images/0e0d9225ec14ceddf13d2e3673293dae354d9f5349ce83000fcf2b55d218ad99.png" />
 </div>
 </div>
 <p>As the k-point mesh is defined in reciprocal space, you can achieve the same level of precision by doubling the simulation cell in one direction and setting the k-point mesh to half. Still the additional interaction of the electrons results in this simulation being less efficient, so the computationally most efficient choice for a DFT simulation is choosing the simulation cell as small as possible, but that might restrict the scientific complexity.</p>

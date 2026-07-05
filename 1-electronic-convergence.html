@@ -386,11 +386,7 @@ depends on the electron density \)</span>n(\mathbf{r}) = \sum_i f_i |\psi_i(\mat
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1df0886f8b2e476fbf658958f24a742a"}</script><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.12/site-packages/nglview/__init__.py:12: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools&lt;81.
-  import pkg_resources
-</pre></div>
-</div>
-</div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "70aa20eb00144ea8ab0e961f13c6825a"}</script></div>
 </div>
 <section id="calculation">
 <h2>Calculation<a class="headerlink" href="#calculation" title="Link to this heading">#</a></h2>
@@ -414,7 +410,7 @@ depends on the electron density \)</span>n(\mathbf{r}) = \sum_i f_i |\psi_i(\mat
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "b719f186bd684b71928f18252c6938f9"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "8a7b78abdca24c3e9ddb451824c04115"}</script></div>
 </div>
 <p>In the second step, the primitive atomistic structure for Aluminium (Al) is created. In pyiron this is achieved using the <code class="docutils literal notranslate"><span class="pre">create.structure.ase.bulk()</span></code> function of the <code class="docutils literal notranslate"><span class="pre">Project</span></code> object. To help with interactive development, python provides <code class="docutils literal notranslate"><span class="pre">tab</span></code> completion, so by typing <code class="docutils literal notranslate"><span class="pre">pr.create.</span></code> and pressing <code class="docutils literal notranslate"><span class="pre">tab</span></code> you get a list of available objects which can be created from the <code class="docutils literal notranslate"><span class="pre">Project</span></code>. The advantage of creating these objects from the <code class="docutils literal notranslate"><span class="pre">Project</span></code> object is that the path of the <code class="docutils literal notranslate"><span class="pre">Project</span></code> object is then automatically used for data storage, so the <code class="docutils literal notranslate"><span class="pre">structure</span></code> object directly knows it should write any data to the <code class="docutils literal notranslate"><span class="pre">path</span></code> of the <code class="docutils literal notranslate"><span class="pre">Project</span></code> object. You can print the path of the <code class="docutils literal notranslate"><span class="pre">Project</span></code> object using <code class="docutils literal notranslate"><span class="pre">pr.path</span></code>.</p>
 <div class="cell docutils container">
@@ -437,7 +433,7 @@ depends on the electron density \)</span>n(\mathbf{r}) = \sum_i f_i |\psi_i(\mat
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "ca2a472326e946529d3ec01a7b1c2027"}</script></div>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "1ec2fca86dc64e2baad03274828ff336"}</script></div>
 </div>
 <p>After the creation of the <code class="docutils literal notranslate"><span class="pre">structure</span></code> object, the SPHInX <code class="docutils literal notranslate"><span class="pre">job</span></code> object can be created using the same <code class="docutils literal notranslate"><span class="pre">create()</span></code> function of the project object. After the creation of the <code class="docutils literal notranslate"><span class="pre">job</span></code> object, the <code class="docutils literal notranslate"><span class="pre">structure</span></code> object is assigned. Followed by the specification of the k-point mesh using the <code class="docutils literal notranslate"><span class="pre">set_kpoints()</span></code> function, the energy cutoff using the <code class="docutils literal notranslate"><span class="pre">set_encut()</span></code> function and the electronic convergence criteria using the <code class="docutils literal notranslate"><span class="pre">set_convergence_precision()</span></code> function. Finally, the computational resources can be assigned. In this case only a single computational core is selected, but typically such a calculation would be submitted to a high performance computing (HPC) cluster. Up to this point no data was written to the file system. Only when the <code class="docutils literal notranslate"><span class="pre">run()</span></code> function of the <code class="docutils literal notranslate"><span class="pre">job</span></code> object is executed <code class="docutils literal notranslate"><span class="pre">pyiron</span></code> writes the input files for the <code class="docutils literal notranslate"><span class="pre">SPHInX</span></code> DFT simulation code, calls the simulation code and parses the output of the calculation.</p>
 <div class="cell docutils container">
@@ -480,7 +476,7 @@ depends on the electron density \)</span>n(\mathbf{r}) = \sum_i f_i |\psi_i(\mat
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.12/site-packages/pyiron_base/interfaces/lockable.py:59: LockedWarning: __setitem__ called on &lt;class &#39;pyiron_atomistics.sphinx.input_writer.Group&#39;&gt;, but object is locked!
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.13/site-packages/pyiron_base/interfaces/lockable.py:59: LockedWarning: __setitem__ called on &lt;class &#39;pyiron_atomistics.sphinx.input_writer.Group&#39;&gt;, but object is locked!
   warnings.warn(
 </pre></div>
 </div>
@@ -500,7 +496,7 @@ depends on the electron density \)</span>n(\mathbf{r}) = \sum_i f_i |\psi_i(\mat
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Energy (eV)&#39;)
 </pre></div>
 </div>
-<img alt="_images/6c12ad1e4641708f5ffa6c134b5ed9bd1f65a3d96d4893af9100e40b15afb699.png" src="_images/6c12ad1e4641708f5ffa6c134b5ed9bd1f65a3d96d4893af9100e40b15afb699.png" />
+<img alt="_images/707b64053c86c75b9d964b94f659b1d7e8fbdfa4a129af8a9060218d7896cd8d.png" src="_images/707b64053c86c75b9d964b94f659b1d7e8fbdfa4a129af8a9060218d7896cd8d.png" />
 </div>
 </div>
 <p>The calculation seems to be converged after the first electronic step with only minimal changes afterwards. But this impression is caused by the misleading representation of the data. If we subtract the full converged energy at the last electronic steps <code class="docutils literal notranslate"><span class="pre">eng_lst[-1]</span></code> from all other energies and take the absolute of this difference <code class="docutils literal notranslate"><span class="pre">np.abs()</span></code> then we can plot is on a semi-logarithmic scale. This highlights the logarithmic convergence of the electronic structure, nearly linear with the number of steps in the semi-logarithmic plot.</p>
@@ -516,11 +512,11 @@ depends on the electron density \)</span>n(\mathbf{r}) = \sum_i f_i |\psi_i(\mat
 <div class="cell_output docutils container">
 <div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
 &lt;&gt;:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
-/tmp/ipykernel_672/2630766026.py:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
+/tmp/ipykernel_145/2630766026.py:3: SyntaxWarning: invalid escape sequence &#39;\D&#39;
   plt.ylabel(&quot;$\Delta$ Energy (eV)&quot;)
 </pre></div>
 </div>
-<img alt="_images/7a8fc9f1b4ea56b1625cf95f3596499adaeb800e9eaa80923edb4a028577202f.png" src="_images/7a8fc9f1b4ea56b1625cf95f3596499adaeb800e9eaa80923edb4a028577202f.png" />
+<img alt="_images/afc8cd8470d0a5239360b2e8684301dbe2e4f7794f5a7ac554552e4bd7c7d519.png" src="_images/afc8cd8470d0a5239360b2e8684301dbe2e4f7794f5a7ac554552e4bd7c7d519.png" />
 </div>
 </div>
 <p>This example demonstrates that determening if a calculation is converged or not always depends on the convergence goal. A convergence of <span class="math notranslate nohighlight">\(10^{-3}\)</span> is already achived at the second electronic step while a convergence of <span class="math notranslate nohighlight">\(10^{-7}\)</span> in this case requires three electronic steps and so on.</p>
@@ -583,10 +579,10 @@ the absolute difference between the total energy at SCF step \)</span>m<span cla
       <td>/spx</td>
       <td>None</td>
       <td>/home/jovyan/electronic_convergence/</td>
-      <td>2025-11-22 19:01:50.475782</td>
-      <td>2025-11-22 19:01:52.310354</td>
+      <td>2026-07-05 19:57:17.223329</td>
+      <td>2026-07-05 19:57:18.478906</td>
       <td>1.0</td>
-      <td>pyiron@jupyter-jan-janssen-birmingham-c0uh7r7t#1</td>
+      <td>pyiron@jupyter-janssenlab-2026-hhu-lecture-302sik2p#1</td>
       <td>Sphinx</td>
       <td>3.1</td>
       <td>None</td>
