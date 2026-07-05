@@ -6,5 +6,5 @@ dependencies:
 - sphinxdft-data =0.0.1
 - pyiron_atomistics =0.8.9
 - pyiron-data =0.0.31
-- nglview =4.0.1
-- ipykernel =7.1.0
+- nglview =3.1.4
+- ipykernel <7
