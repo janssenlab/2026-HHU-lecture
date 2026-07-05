@@ -1,0 +1,13 @@
+title: Workflow for Density Functional Theory
+author: Jan Janssen
+
+execute:
+  execute_notebooks           : off
+
+repository:
+    url                       : https://github.com/janssenlab/2026-HHU-lecture
+    path_to_book              : ""
+
+launch_buttons:
+  notebook_interface          : jupyterlab
+  binderhub_url               : https://mybinder.org

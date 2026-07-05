@@ -1,0 +1,7 @@
+#!/bin/bash
+rm -rf .github
+rm README.md
+rm _config.yml
+rm _toc.yml
+rm environment.yml
+rm postBuild
